@@ -1,0 +1,23 @@
+{/* src/GettingStarted.mdx */}
+# Atlas Vue
+
+A library of beautiful Vue components.
+
+atlas is a Vue.js component library for quickly developing web applications.
+
+## Installation
+
+## Quickstart
+
+## Note on using atlas to construct a layout
+
+f you already have a layout and do not want to use the App component to manage your layout, then you can ignore this.
+
+It is worth mentioning that the App keeps track of whether or not the page is considered mobile. You're able to
+specify different values for desktop and mobile dimensions of the Topbar, Minibar and Sidebar so that your pages
+look exactly how you'd like them to look in either viewport.
+
+Other components, such as the Range component, subscribe to the App's isMobile status. This is so that on mobile,
+we're able to make certain adjustments under the hood to improve the user experience with that particular component.
+For this type of responsiveness to work, it must be a descendent of the App, as the App only broadcasts mobility
+status to its children.

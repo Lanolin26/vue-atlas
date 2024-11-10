@@ -1,9 +1,16 @@
 # vue3-atlas
 
-This template should help get you started developing with Vue 3 in Vite.
+## Prerequest
+Files `hosts`:
+```
+173.236.214.144 vue-atlas.com
+```
+Open documentation: https://vue-atlas.com/
+
+
 
 ## Recommended IDE Setup
-
+This template should help get you started developing with Vue 3 in Vite.
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
 ## Type Support for `.vue` Imports in TS

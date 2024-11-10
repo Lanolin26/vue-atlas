@@ -1,0 +1,27 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import * as VaAlert from './VaAlert.stories';
+
+<Meta of={VaAlert} />
+
+# Alert
+
+Компонент, используемый для привлечения внимания читателя к чему-то важному.
+
+## Component options
+
+### Props
+
+| name | type   | valid                                          | default | required     | description                        |
+|------|--------|------------------------------------------------|---------|--------------|------------------------------------|
+| type | string | "warning", "success", "info", "danger", "help" | warning | not required | Тип предупреждения для отображения |
+
+### Events
+
+### Methods
+
+## Usage
+
+### Default
+
+<Canvas of={VaAlert.Default} />
+
