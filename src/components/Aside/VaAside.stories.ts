@@ -1,27 +1,36 @@
 import type { Meta, StoryFn } from "@storybook/vue3";
 import VaAside from "./VaAside.vue";
-import { LoremIpsum } from "lorem-ipsum";
+import { action } from "@storybook/addon-actions";
+import { withActions } from '@storybook/addon-actions/decorator';
 
 type typeOfComponent = typeof VaAside
 
 const meta: Meta<typeOfComponent> = {
   title: "Vue Atlas/VaAside",
   component: VaAside,
+  decorators: [withActions],
   argTypes: {
-/*
-  placement?: string;
-  title?: string;
-  header?: boolean;
-  width?: string;
- */
+    placement: {
+      control: "select",
+      description: "С какой стороны окна появляться.",
+      options: ["left", "right"]
+    },
+    header: {
+      control: "boolean"
+    },
+    width: {
+      control: "text",
+      description: "Ширина бокового элемента"
+    }
   },
   args: {
-    /*
-      placement?: string;
-      title?: string;
-      header?: boolean;
-      width?: string;
-     */
+    onHide: action('hide'),
+    onShow: action('show'),
+    placement: "right",
+    title: "This is Title",
+    default: "This is body",
+    header: false,
+    width: "304px"
   },
 };
 export default meta;
@@ -33,8 +42,14 @@ export const Default: StoryFn<typeOfComponent> = (args) => ({
   },
   template: `
     <div style="">
-      <va-aside v-bind="args">
-
+      <button @click="$refs.aside.open()">Open</button>
+      <va-aside ref="aside" v-bind="args">
+        <template #title>
+          {{ args.title }}
+        </template>
+        <template #default>
+          <div style="padding:20px;">{{ args.default }}</div>
+        </template>
       </va-aside>
     </div>
   `,

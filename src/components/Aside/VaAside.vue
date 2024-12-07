@@ -1,32 +1,36 @@
 <script setup lang="ts">
-import { computed, inject, onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { onUnmounted } from "@vue/runtime-core";
 import { createFocusTrap, type FocusTrap } from "focus-trap";
 import EventListener, { type ListenReturnFunction } from "@/utils/EventListener";
 import element from "@/utils/element";
 import { TinyEmitter as Emitter } from "tiny-emitter";
+import type { VaAsidePlacement } from "@/components/Aside/index";
 
 interface VaAsideProps {
-  placement?: string;
-  title?: string;
+  placement?: VaAsidePlacement;
   header?: boolean;
   width?: string;
 }
 
 const props = withDefaults(defineProps<VaAsideProps>(), {
   placement: "left",
-  title: "",
   header: false,
   width: "304px",
 });
 
 const emit = defineEmits(["hide", "show"]);
 
+defineSlots<{
+  default(): any;
+  title(): any;
+}>();
+
 const show = ref<boolean>(false);
 const focusTrap = ref<FocusTrap>();
 const _clickEvent = ref<ListenReturnFunction>();
 const aside = ref<HTMLElement>();
-const emitter = ref(new Emitter())
+const emitter = ref(new Emitter());
 
 const classObj = computed(() => {
   const { placement } = props;
@@ -45,16 +49,16 @@ const escapeHandler = (e: KeyboardEvent) => {
 
 document.addEventListener("keydown", escapeHandler);
 
-emitter.value.once('hook:destroyed', () => {
-  document.removeEventListener('keydown', escapeHandler)
-})
+emitter.value.once("hook:destroyed", () => {
+  document.removeEventListener("keydown", escapeHandler);
+});
 
 onMounted(() => {
   if (aside.value) {
     document.querySelector("body")?.appendChild(aside.value);
-    emitter.value.once('hook:destroyed', () => {
+    emitter.value.once("hook:destroyed", () => {
       if (aside.value) document.querySelector("body")?.removeChild(aside.value);
-    })
+    });
 
     focusTrap.value = createFocusTrap(aside.value, {
       clickOutsideDeactivates: true,
@@ -66,9 +70,8 @@ onMounted(() => {
 
 onUnmounted(() => {
   performClose();
-  emitter.value.emit('hook:destroyed')
+  emitter.value.emit("hook:destroyed");
 });
-
 
 watch(
   () => show.value,
@@ -83,11 +86,10 @@ watch(
 
       // This timeout is included to allow for opacity transition.
       setTimeout(() => {
-        backdrop.className += " " + "va-aside-in";
+        backdrop.className += " va-aside-in";
         _clickEvent.value = EventListener.listen(backdrop, "click", close);
         emit("show");
       }, 20);
-
       focusTrap.value?.activate();
     } else {
       focusTrap.value?.deactivate();
@@ -99,17 +101,17 @@ watch(
 const open = () => {
   show.value = true;
 };
-defineExpose({ open })
 
 const close = () => {
   show.value = false;
 };
+defineExpose({ open, close });
 
 const performClose = () => {
   if (_clickEvent.value) _clickEvent.value.remove();
 
   const body = document.body;
-  const backdrop = document.querySelector("." + "va-aside-backdrop");
+  const backdrop = document.querySelector(".va-aside-backdrop");
 
   if (backdrop) {
     backdrop.className = "va-aside-backdrop";
@@ -131,7 +133,9 @@ const performClose = () => {
             <button class="va-close" @click="close" type="button">
               <span>&times;</span>
             </button>
-            <div class="va-aside-title">{{ title }}</div>
+            <div class="va-aside-title">
+              <slot name="title" />
+            </div>
           </div>
           <div class="va-aside-body">
             <slot />

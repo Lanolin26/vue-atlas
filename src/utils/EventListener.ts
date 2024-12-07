@@ -29,10 +29,7 @@ const EventListener = {
         }
       }
     }
-    return {
-      remove() {
-      }
-    };
+    throw new Error(`Unknown event type ${eventType}`)
   }
 }
 

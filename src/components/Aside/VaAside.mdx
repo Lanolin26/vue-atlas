@@ -4,18 +4,37 @@ import * as VaAside from './VaAside.stories';
 
 <Meta of={VaAside} />
 
-# NAME
+# Aside
 
-DESCRIPTION
+Компонент, который отображает боковое наложение в указанном месте.
 
 ## Component options
 
 ### Props
 
-| name   | type           | default | required     | description                           |
-|--------|----------------|---------|--------------|---------------------------------------|
+| name      | type                | default | required     | description                        |
+|-----------|---------------------|---------|--------------|------------------------------------|
+| placement | `"left" \| "right"` | `left`  | not required | С какой стороны окна отображаться. |
+| width     | `string`            | `304px` | not required | Ширина бокового элемента           |
+| header    | `boolean`           | `false` | not required | Показывать заголовок у элемента    |
 
+### Slots
+
+| name      | description            |
+|-----------|------------------------|
+| `default` | Основное тело элемента |
+| `title`   | Заголовок элемента     |
 
 ### Events
 
+| name   | when                 |
+|--------|----------------------|
+| `hide` | Закрывается элемент  |
+| `show` | Элемент показывается |
+
 ### Methods
+
+| name    | args | description                  |
+|---------|------|------------------------------|
+| `open`  |      | Программно открывает элемент |
+| `close` |      | Программно закрывает элемент |
