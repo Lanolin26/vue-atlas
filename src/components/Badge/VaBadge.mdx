@@ -1,0 +1,22 @@
+import { Meta } from "@storybook/blocks";
+
+import * as VaBadge from './VaBadge.stories';
+
+<Meta of={VaBadge} />
+
+# Badge
+
+Простой компонент, используемый для указания значения или количества.
+
+## Component options
+
+### Props
+
+| name   | type                                                                     | default   | required     | description                                                      |
+|--------|--------------------------------------------------------------------------|-----------|--------------|------------------------------------------------------------------|
+| type   | `"default" \| "primary" \| "success" \| "info" \| "warning" \| "danger"` | "default" | not required | Стиль значка для визуализации.                                   |
+| margin | `string`                                                                 | "0px"     | not required | Поле, которое будет нанесено на внешнюю сторону элемента бейджа. |
+
+### Events
+
+### Methods
