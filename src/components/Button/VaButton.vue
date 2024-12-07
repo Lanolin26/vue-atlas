@@ -237,12 +237,7 @@ onBeforeUnmount(() => {
         </span>
       </span>
 
-      <!--      <div :class="innerClassObj" :style="innerStyleObj">-->
-      <!--        <va-icon v-if="iconBefore !== undefined" :type="iconBefore" :style="iconBeforeStyleObj" />-->
-      <!--        <slot />-->
-      <!--        <va-icon v-if="iconAfter !== undefined" :type="iconAfter" :style="iconAfterStyleObj" />-->
-      <!--      </div>-->
-<!--      <va-loading :color="spinColor" :size="size" v-if="loadingSpinner" />-->
+      <va-loading :color="spinColor" :size="size" v-if="loadingSpinner" />
     </button>
   </div>
 </template>
