@@ -1,0 +1,44 @@
+import { Meta } from "@storybook/blocks";
+
+import * as VaButton from './VaButton.stories';
+
+<Meta of={VaButton} />
+
+# Button
+
+Это кнопка.
+
+## Component options
+
+### Props
+
+| name     | type                     | default   | required     | description                                                                                                |
+|----------|--------------------------|-----------|--------------|------------------------------------------------------------------------------------------------------------|
+| type     | `VaButtonType`           | `default` | not required | Стиль кнопки для отображения                                                                               |
+| size     | `"xs"\|"sm"\|"md"\|"lg"` | `md`      | not required | Размер кнопки для визуализации                                                                             |
+| active   | `boolean`                | `false`   | not required | Если `true`, применяет активный класс, чтобы показать, что кнопка активна.                                 |
+| disabled | `boolean`                | `false`   | not required | Если `true`, кнопка становится неактивной.                                                                 |
+| block    | `boolean`                | `false`   | not required | Если `true`, применяется `display: block`.                                                                 |
+| loading  | `boolean`                | `false`   | not required | Если `true`, текст скрывается и отображается индикатор загрузки.                                           |
+| round    | `boolean`                | `false`   | not required | Просто установите `border-radius` на `50%`. Отлично работает с кнопками, которые являются просто значками. |
+| focused  | `boolean`                | `false`   | not required | Фокусируется на элементе до тех пор, пока пользователь не щелкнет за пределами элемента.                   |
+
+### Slots
+
+| name    | description       |
+|---------|-------------------|
+| before  | До содержимого    |
+| default | Содержимое        |
+| after   | После содержимого |
+
+### Events
+
+| name  | when              |
+|-------|-------------------|
+| click | Нажатие на кнопку |
+
+### Methods
+
+| name  | description             |
+|-------|-------------------------|
+| click | Callback нажатия кнопки |
